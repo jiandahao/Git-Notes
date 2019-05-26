@@ -112,7 +112,7 @@ git cat-file -p 59a4b32bf8c
 ```
 以上命令可查看对应的内容
 
-###10.Git中的三大对象（Commit,Blob,Tree)
+### 10.Git中的三大对象（Commit,Blob,Tree)
 
 ### 11.分离头指针
 所有commit都应该和某个分支绑定，否则所有在分离头指针上的commit会被git清除掉
@@ -184,17 +184,25 @@ Date:   Tue May 21 14:45:30 2019 +0800
 git rebase -i a273447cdcb8d
 ```
 进入交互界面，选择合适的策略:
+	
 ![avatar](figures/commit.png)
+
 保存后进入另一个交互界面，根据注释添加新的commit message
+	
 ![avatar](figures/commit2.png)
+	
 如此<Add style>、<modified readme.md>和<Add a index and + log>就合并为一个commit了
 
 ### 15.怎样把间隔的几个commit整理成1个？
 参照<**怎样把连续的多个commit整理成1个**>,不一样的是要将需要合并的commit写在连续行中。如果要合并到祖先commit中，那么reabse -i接的hash值选择祖先commit对应的hash值，然后进入交互界面后，在第一行添加pick <祖先hash> [commit message(也可以不写)].
 可能出现以下情况
+
 ![avatar](figures/commit_issue1.png)
+
 查看status可见
+
 ![avatar](figures/commit_issue1_1.png)
+
 解决方法一（目前测试发现不行），根据提示执行
 ```
 git rebase --continue
@@ -227,7 +235,9 @@ git reset HEAD <file> #指定文件
 
 ### 20.如何让工作区的文件恢复为和暂存区一样？
 工作区文件与暂存区不一致的情况为类似
+
 ![avatar](figures/checkout_modify.png)
+
 ```
 git checkout -- <file> # 可以同时指定多个文件
 ```

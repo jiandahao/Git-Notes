@@ -388,3 +388,9 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ### 31.禁止向集成分支执行push-f操作
 ### 32.禁止向集成分支执行变更历史的操作
+
+### 33.`fatal: refusing to merge unrelated histories`(拒绝合并不相关的历史)
+在github端创建新的项目并建立README后，又在本地`git init`初始化仓库而且进行文件`add`和`commit`操作，此时再`pull`和'push'都会出错。出现这个问题的最主要原因还是在于本地仓库和远程仓库实际上是独立的两个仓库。可以在pull命令后紧接着使用`--allow-unrelated-histories`选项来解决问题（该选项可以合并两个独立启动仓库的历史）。
+```
+$ git pull origin master --allow-unrelated-histories
+```

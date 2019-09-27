@@ -404,3 +404,16 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 $ git pull origin master --allow-unrelated-histories
 ```
+### 34. 修改远程仓库地址
+方法有三种：
+
+1直接修改
+```bash
+git remote set-url origin [url]
+```
+2先删后加
+```bash
+git remote rm origin
+git remote add origin [url]
+```
+3. 直接修改config文件

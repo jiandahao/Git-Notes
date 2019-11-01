@@ -417,3 +417,12 @@ git remote rm origin
 git remote add origin [url]
 ```
 3. 直接修改config文件
+
+### 35. 拉取远程分支
+```bash
+git fetch
+```
+此时`git branch`发现并没有除了本地分支外的其他分支,此时只需要执行`checkout`到指定的分支即可
+```bash
+git checkout <specified-branch>
+```

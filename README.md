@@ -426,3 +426,6 @@ git fetch
 ```bash
 git checkout <specified-branch>
 ```
+
+### 36. .gitignore
+https://www.cnblogs.com/kevingrace/p/5690241.html

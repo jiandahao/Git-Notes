@@ -429,3 +429,10 @@ git checkout <specified-branch>
 
 ### 36. .gitignore
 https://www.cnblogs.com/kevingrace/p/5690241.html
+
+如果需要忽略的文件已经被纳入了版本管理，那么可以通过以下方式进行解决
+```bash
+git rm -r --cached <folder/file>
+git add <folder/file>
+```
+先把相关文件或文件夹变为untracked，然后再添加到git仓库中。

@@ -436,3 +436,35 @@ git rm -r --cached <folder/file>
 git add <folder/file>
 ```
 先把相关文件或文件夹变为untracked，然后再添加到git仓库中。
+
+### git reset --hard恢复
+[参考原文链接](https://blog.csdn.net/wangyueshu/java/article/details/90919019)
+有时
+有时不小心执行了git reset --hard后发现后悔了，或者忘记commit了。
+
+解决办法：
+
+一、没有commit，没有add
+
+对不起，找不回了，放弃吧。
+
+二、没有commit，但是有add操作
+
+执行：git fsck --lost-found
+
+在项目git目录下的 /.git/lost-found/other里有你add过的文件。挨个看看，能救回来多少是多少吧。
+再附送一个命令：find .git/objects -type f | xargs ls -lt | sed 60q
+
+找回本地仓库里边最近add的60个文件。找回思路同上。
+
+三、执行过commit
+
+好吧，你很幸运。
+
+执行 git  reflog
+
+会有类似下面的东西，挑你想回退的地方，一般是那次commit之前的head，例如 HEAD@{7}
+
+执行 git reset --hard HEAD@{7} 
+
+对于没有commit 但是add的情况，找回的文件可能需要进行重命名。

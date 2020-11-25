@@ -437,7 +437,7 @@ git add <folder/file>
 ```
 先把相关文件或文件夹变为untracked，然后再添加到git仓库中。
 
-### git reset --hard恢复
+### 37. git reset --hard恢复
 [参考原文链接](https://blog.csdn.net/wangyueshu/java/article/details/90919019)
 有时
 有时不小心执行了git reset --hard后发现后悔了，或者忘记commit了。
@@ -468,3 +468,12 @@ git add <folder/file>
 执行 git reset --hard HEAD@{7} 
 
 对于没有commit 但是add的情况，找回的文件可能需要进行重命名。
+
+### 38. 合并merge (squash merge)
+```bash
+git merge --squash dev
+```
+Squashing lets you tidy up the commit history of a branch when accepting a merge
+request. It applies all of the changes in the merge request as a single commit,
+and then merges that commit using the merge method set for the project.
+In other words, squashing a merge request turns a long list of commits into a single commit on merge

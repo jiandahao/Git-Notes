@@ -477,3 +477,16 @@ Squashing lets you tidy up the commit history of a branch when accepting a merge
 request. It applies all of the changes in the merge request as a single commit,
 and then merges that commit using the merge method set for the project.
 In other words, squashing a merge request turns a long list of commits into a single commit on merge
+
+### 39. git checkout
+在需要清除当前工作区改动的时候，需要注意`git checkout`和`git checkout --`的区别
+```
+I seem to recall that the -- is a way to tell Git to treat what follows checkout as a file and not as a branch. Suppose that you had both a file and a branch called stuff. Then the following command would seem ambiguous:
+
+git checkout stuff
+because it is not clear whether you are asking to checkout a file or a branch. By using -- you explicitly tell Git to checkout a file by that name/path. So in this case the following commands allow checking out a branch and a file called stuff:
+
+git checkout stuff       # checkout the branch stuff
+git checkout -- stuff    # checkout the file stuff
+Note that git checkout <name> is really meant for branches, but Git syntax is relaxed, and if Git can't find a branch, then it will look for a file.
+```

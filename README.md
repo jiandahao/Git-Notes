@@ -301,6 +301,8 @@ git stash create [<message>]
 git stash store [-m|--message <message>] [-q|--quiet] <commit>
 ```
 
+如果git stash pop的时候出现修改冲突的时候，想要撤销的话，只需要reset代码。pop失败的时候，stash list中的记录不会被删除，可以下次继续pop
+
 ### 25.如何指定不需要Git管理的文件？
 通过`.gitignore`文件来指定。常见一些编程语言对应的`.gitignore`可参考<https://github.com/github/gitignore>。
 可以自己编写或添加不想被Git管理的文件规则。

@@ -492,3 +492,43 @@ git checkout stuff       # checkout the branch stuff
 git checkout -- stuff    # checkout the file stuff
 Note that git checkout <name> is really meant for branches, but Git syntax is relaxed, and if Git can't find a branch, then it will look for a file.
 ```
+### 40. 批量修改提交用户名/邮箱
+```bash
+#!/bin/sh
+git filter-branch --env-filter '
+OLD_EMAIL="<需要修改的邮箱地址>"
+CORRECT_NAME="<修改后的用户名>"
+CORRECT_EMAIL="<修改用的邮箱地址>"
+
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+```
+全部修改
+```bash
+#!/bin/sh
+git filter-branch --env-filter '
+OLD_EMAIL="<需要修改的邮箱地址>"
+CORRECT_NAME="<修改后的用户名>"
+CORRECT_EMAIL="<修改用的邮箱地址>"
+export GIT_COMMITTER_NAME="$CORRECT_NAME"
+export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+export GIT_AUTHOR_NAME="$CORRECT_NAME"
+export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+' --tag-name-filter cat -- --branches --tags
+```
+在仓库根目录执行上面的脚本，然后推到仓库
+```bash
+git push origin --force --all
+或
+git push --force --tags origin 'refs/heads/*'
+```
+如果仓库有设置Protected Branch，需要先关闭

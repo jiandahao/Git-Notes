@@ -549,3 +549,4 @@ git init
 ```bash
 git pull </path/to/big-repo> <name-of-new-branch>
 ```
+[Reference](https://printempw.github.io/splitting-a-subfolder-out-into-a-new-git-repository/)

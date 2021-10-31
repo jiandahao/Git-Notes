@@ -532,3 +532,20 @@ git push origin --force --all
 git push --force --tags origin 'refs/heads/*'
 ```
 如果仓库有设置Protected Branch，需要先关闭
+	
+### 41. 如何将现有 git 仓库中的子目录分离为独立仓库并保留其提交历史
+首先，进入 big-repo 所在的目录，运行：
+```bash
+git subtree split -P <name-of-folder> -b <name-of-new-branch>
+```
+运行后，git 会遍历原仓库中所有的历史提交，挑选出与指定路径相关的 commit 并存入名为 `name-of-new-branch` 的临时分支中。另外需要注意的是，如果你在使用 Windows，且该文件夹深度 > 1，你必须使用斜杠 / 作为目录分隔符而不是默认的反斜杠 \。
+
+然后，我们创建一个新的 git 仓库：
+```bash
+mkdir <new-repo>
+git init
+```
+接着把原仓库中的临时分支拉到新仓库中：
+```bash
+git pull </path/to/big-repo> <name-of-new-branch>
+```
